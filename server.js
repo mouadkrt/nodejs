@@ -3,12 +3,20 @@ var express = require('express'),
     app = express();
 
 var app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser);
 
 var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 
 app.get('/', function(req, res) {
     console.log("Got request on / endpoint. Sending back a Hello World ....");
+    
+    console.log("HTTP HEADER ");
+    console.log(req.headers);
+
+    console.log("\nHTTP BODY : %j", req.body);
+    
     res.send('<h3>Hello from NodeJS-v3  at </h3>'+ new Date());
 });
 
