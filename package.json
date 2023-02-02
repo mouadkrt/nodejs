@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-	"start": "node server.js",
+    "start": "node server.js",
     "swagger-autogen": "node swagger.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "and": "^0.0.3",
-    "express": "^4.17.1",
     "body-parser": "^1.20.1",
+    "body-parser-xml": "^2.0.3",
+    "express": "^4.17.1",
     "swagger-autogen": "^2.22.0",
     "swagger-ui-express": "^4.6.0"
   }

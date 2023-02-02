@@ -3,25 +3,27 @@ var express = require('express'),
     app = express();
 
 var app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser);
 
+const bodyParser = require('body-parser');
+require('body-parser-xml')(bodyParser);
+app.use(bodyParser.xml({inflate:true}));
 var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 
 app.get('/', function(req, res) {
     console.log("Got request on / endpoint. Sending back a Hello World ....");
     
-    console.log("HTTP HEADER ");
-    console.log(req.headers);
+    console.log("HTTP HEADER %j", req.headers);
+    console.log("HTTP BODY %j", req.body);
+    //console.log(req.headers);
 
-    console.log("\nHTTP BODY : %j", req.body);
+    //console.log("\nHTTP BODY : %j", req.body);
     
     res.send('<h3>Hello from NodeJS-v3  at </h3>'+ new Date());
 });
 
 app.get('/api/end_point1', function(req, res) {
-    console.log("Got request on /end_point1 endpoint. Sending some json content ....");
+    console.log("\n------------\nGot request on /end_point1 endpoint. Sending some json content ....");
     console.log(req);
     res.json({ company: 'Munisys' });
 });
