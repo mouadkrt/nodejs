@@ -5,12 +5,13 @@ var express = require('express'),
 var app = express();
 
 const bodyParser = require('body-parser');
-require('body-parser-xml')(bodyParser);
-app.use(bodyParser.xml({inflate:true}));
+//require('body-parser-xml')(bodyParser);
+//app.use(bodyParser.xml({inflate:true}));
+
 var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 
-app.get('/', function(req, res) {
+app.get('/', bodyParser.text({type: '*/*'}), function(req, res) {
     console.log("Got request on / endpoint. Sending back a Hello World ....");
     
     console.log("HTTP HEADER %j", req.headers);
@@ -19,7 +20,7 @@ app.get('/', function(req, res) {
 
     //console.log("\nHTTP BODY : %j", req.body);
     
-    res.send("<backend><postman>" + req.body.postman + "</postman></backend>");
+    res.send(req.body + " (data added from backend)");
 });
 
 app.get('/api/end_point1', function(req, res) {
