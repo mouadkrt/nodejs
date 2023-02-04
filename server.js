@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
     //console.log("\nHTTP BODY : %j", req.body);
     
-    res.send("<backend>" + req.body + "</backend>");
+    res.send("<backend><postman>" + req.body.postman + "</postman></backend>");
 });
 
 app.get('/api/end_point1', function(req, res) {
