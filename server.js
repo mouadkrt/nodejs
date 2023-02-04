@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
     //console.log("\nHTTP BODY : %j", req.body);
     
-    res.send('<h3>Hello from NodeJS-v3  at </h3>'+ new Date());
+    res.send("<backend>" + req.body + "</backend>");
 });
 
 app.get('/api/end_point1', function(req, res) {
