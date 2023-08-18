@@ -2,8 +2,6 @@ var express = require('express'),
     fs = require('fs'),
     app = express();
 
-var app = express();
-
 const cors = require('cors');
 app.use(cors({origin: '*'}));
 
@@ -25,8 +23,8 @@ app.get('/', bodyParser.text({type: '*/*'}), function(req, res) {
     //console.log(req.headers);
 
     //console.log("\nHTTP BODY : %j", req.body);
-    
-    res.send(req.body + " (data added from backend) v2");
+    const ipAddress = req.socket.remoteAddress;
+    res.send(req.body + " (data added from backend) v2. Client IP : " + ipAddress);
 });
 
 app.get('/api/end_point1', function(req, res) {
