@@ -43,6 +43,19 @@ app.get('/api/end_point3/:id', function(req, res) {
     res.json(req.params);
 });
 
+app.get('/api/headerlab', function(req, res) {
+    console.log("Got request on /headerlab endpoint. Sending some json content ....");
+	console.log(req.headers.authorization);
+	
+	var auth = req.headers.authorization;
+	var tmp = auth.split(' ');
+	var buf = new Buffer(tmp[1], 'base64'); // create a buffer and tell it the data coming in is base64
+	var plain_auth = buf.toString();        // read it back out as a string
+	console.log("Decoded Authorization ", plain_auth);
+	
+    res.status(200).send('OK');
+});
+
 app.get('*', bodyParser.text({type: '*/*'}), function(req, res){
    console.log("Got request on unknown endpoint :");
     console.log("HTTP HEADER %j", req.headers);
