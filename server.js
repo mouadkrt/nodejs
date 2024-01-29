@@ -24,7 +24,11 @@ app.get('/', bodyParser.text({type: '*/*'}), function(req, res) {
 
     //console.log("\nHTTP BODY : %j", req.body);
     const ipAddress = req.socket.remoteAddress;
-    res.send(req.body + " (data added from backend) v2. Client IP : " + ipAddress);
+	setTimeout(function() {
+	  console.log('This printed after about 1 second');
+	  res.send(req.body + " (data added from backend) v2. Client IP : " + ipAddress);
+	}, 40000);
+    
 });
 
 app.get('/api/end_point1', function(req, res) {
